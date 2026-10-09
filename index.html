@@ -1,115 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Only for 🎀Pookie by @synaxnetwork</title>
-        <meta name="description" content="something special for 🎀Pookie by @synaxnetwork follow on Telegram for more such Codes" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-        <meta property="og:image" content="https://pookie-by-synax.vercel.app/assets/og.jpg" />
-        <link rel="icon" type="image/png" href="/favico.png" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="loader.css" />
-        <script src="https://unpkg.com/scrollreveal"></script>
-        <script src="animations.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
-        <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>Advance Happy Birthday, My Wife 🎂❤️</title>
+  <meta name="theme-color" content="#12000a">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hearts" aria-hidden="true"></div>
 
-    <body>
-        <div id="loader">
-    <div class="spinner"></div>
-    <p>Loading magic for Pookie... 🎀</p>
+  <div id="cover" class="cover">
+    <div class="cover-card">
+      <div class="mini-heart">❤️</div>
+      <p class="tiny">A little birthday surprise for</p>
+      <h1>My Wife 🐷❤️</h1>
+      <p class="sub">Advance Happy Birthday, meri jaan! 🎂🥹</p>
+      <div class="countdown-box"><p class="countdown-title">Countdown to your birthday 💗</p><div id="countdown" class="countdown" aria-live="polite"><span>Loading love… ❤️</span></div><p class="countdown-date">13 November 2026 🎂</p></div>
+      <button id="startBtn">🎁 Open your surprise, baby 💗</button>
+    </div>
   </div>
-       <audio src="./audio.mp3" id="linkmp3" class="sembunyi" preload="auto"></audio>
-        <div class="overlay" style="display: none;">
-            <div class="cover">
-                <p style="font-size: 35px; font-weight: 700; margin: 0;  text-shadow: 0 0 50px blue;">
-                    Are you ready Madamjii? 😌😏
-                </p>
-                <br />
-                <div id="loveIn" class="awalan">
-                    <svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g transform="translate(2.000000, 2.000000)">
-                            <path
-                                d="M9.27542857,0.714285714 C14.0030476,0.714285714 17.836381,4.54666667 17.836381,9.2752381 C17.836381,14.0038095 14.0030476,17.8361905 9.27542857,17.8361905 C4.54685714,17.8361905 0.71447619,14.0038095 0.71447619,9.2752381 C0.71447619,4.54666667 4.54685714,0.714285714 9.27542857,0.714285714 Z"
-                            ></path>
-                            <path
-                                d="M17.8989524,16.487619 C18.678,16.487619 19.3094286,17.12 19.3094286,17.8980952 C19.3094286,18.6780952 18.678,19.3095238 17.8989524,19.3095238 C17.1199048,19.3095238 16.4875238,18.6780952 16.4875238,17.8980952 C16.4875238,17.12 17.1199048,16.487619 17.8989524,16.487619 Z"
-                            ></path>
-                        </g>
-                    </svg>
-                    <label style="font-size: 20px;">👉click here to start👈</label>
-                </div>
-            </div>
-        </div>
-        <script>
-            linkmp3.onloadeddata = function () {
-                document.querySelector(".overlay").style.display = "flex";
-            };
-        </script>
-        <button id="shareBtn2" onclick="imp1()">@synaxnetwork</button>
-        <div class="heart-container">
-            <div class="heart">😍</div>
-            <div class="heart">😏</div>
-            <div class="heart">😏</div>
-            <div class="heart">😍</div>
-        </div>
-        <div id="bodyblur">
-            <video id="wallpaper" autoplay muted loop playsinline preload="auto">
-    <source src="/assets/bg.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-</video>
 
-            <div id="videoOverlay"></div>
-        </div>
+  <canvas id="fireworks" aria-hidden="true"></canvas>
+  <audio id="bgMusic" src="phir-kabhi.mp3" loop preload="auto"></audio>
+  <button id="musicBtn" class="music-btn" aria-label="Toggle music">🎵 Music</button>
 
-        <!-- Swiper -->
-        <div class="swiper">
-            <div class="mainMsg">
-                <div class="mainSt">
-                    <img id="st1" src="/assets/1.jpg" />
-                    <img id="st2" src="/assets/photo_4.jpg" class="sembunyi" />
-                    <img id="st3" src="/assets/12.jpg" class="sembunyi" />
-                    <img id="st4" src="/assets/photo_1.jpg" class="sembunyi" />
-                    <img id="st5" src="/assets/5.jpg" class="sembunyi" />
-                    <img id="st6" src="/assets/photo_6.jpg" class="sembunyi" />
-                    <img id="st7" src="/assets/10.jpg" class="sembunyi" />
-                    <img id="st8" src="/assets/8.jpg" class="sembunyi" />
-                    <img id="st9" src="/assets/9.jpg" class="sembunyi" />
-                    <img id="st10" src="/assets/6.jpg" class="sembunyi" />
-                    <img id="st11" src="/assets/3.jpg" class="sembunyi" />
-                </div>
-                <span class="mainTxt"></span>
-                <span class="secondTxt"></span>
-            </div>
-            <button id="shareBtn" onclick="shareLink()">
-                🔗 Share link to Pookie 🎀
-            </button>
-        </div>
-        <script>
-  const imageSources = [
-    "/assets/1.jpg", "/assets/photo_4.jpg", "/assets/12.jpg", "/assets/photo_1.jpg",
-    "/assets/5.jpg", "/assets/photo_6.jpg", "/assets/10.jpg", "/assets/8.jpg",
-    "/assets/9.jpg", "/assets/6.jpg", "/assets/3.jpg"
-  ];
+  <main id="app" class="app hidden">
+    <section class="hero">
+      <div class="badge">MY ONE & ONLY • BIRTHDAY GIRL 🎂</div>
+      <h1>My Wife 🐷❤️</h1>
+      <p>Thodi si cute, thodi si pagal… but you are my favourite person, always. 🥹❤️</p>
+      <div class="countdown-box main-countdown"><p class="countdown-title">Your special day is coming in 💞</p><div id="countdown-main" class="countdown" aria-live="polite"></div><p class="countdown-date">13 November 2026 🎂</p></div>
+    </section>
 
-  imageSources.forEach(src => {
-    const img = new Image();
-    img.src = src;
-  });
-  window.addEventListener('load', () => {
-  document.body.classList.add('loaded');
-  const loader = document.getElementById('loader');
-  loader.style.transition = 'opacity 5s ease';
-  loader.style.opacity = 0;
-  setTimeout(() => loader.style.display = 'none', 2000);
-});
+    <section class="card">
+      <div class="photo-wrap">
+        <img id="photo" src="1.jpg" alt="My Wife">
+        <div class="photo-count"><span id="count">1</span> / 10</div>
+      </div>
+      <div class="message" id="message"></div>
+      <button id="nextBtn" class="next">Next surprise 💞</button>
+    </section>
 
-</script>
+    <section class="cake-party card" id="cakeParty">
+      <div class="letter-icon">🎂🎆</div>
+      <h2>Birthday Cake for My Wife ❤️</h2>
+      <p>Baby, ready? Tap the button and let’s cut your birthday cake together! 🥹💗</p>
+      <div class="cake-scene" aria-label="A pink birthday cake with a candle">
+        <div class="candle"><span class="flame">🔥</span></div>
+        <div class="cake-top"></div>
+        <div class="cake-layer cake-layer-one"><span>💗</span><span>✨</span><span>💗</span></div>
+        <div class="cake-layer cake-layer-two"></div>
+        <div class="cake-plate"></div>
+        <div id="cakeSlice" class="cake-slice">🍰</div>
+      </div>
+      <div class="cake-actions">
+        <button id="cutCakeBtn" class="next">🔪 Cut the Cake, Baby! 🎂</button>
+        <button id="fireworksBtn" class="next fireworks-btn">🎆 Patakhe chalao!</button>
+      </div>
+      <p id="cakeMessage" class="cake-message" aria-live="polite">Make a wish, my wife! ❤️✨</p>
+    </section>
 
-        <script src="js.js"></script>
-        <script src="js2.js"></script>
-    </body>
+    <section class="letter">
+      <div class="letter-icon">💌</div>
+      <h2>For my Birthday Girl 🎂💌</h2>
+      <p>
+        Advance Happy Birthday, my wife! 🎂❤️<br>
+        I wish tumhari life hamesha happiness, success aur lots of love se full rahe. 🥹✨
+      </p>
+      <p>
+        Tum meri favourite notification, meri biggest smile aur meri cutest problem ho. 🤭💗<br>
+        Kabhi-kabhi main sahi se express nahi kar pata, but you mean the world to me.
+      </p>
+      <p>
+        Bas aise hi hasti rehna, apna khayal rakhna, aur mujhe thoda sa pareshan karti rehna. 😂🫶<br>
+        <b>You deserve all the love in this world, meri jaan.</b>
+      </p>
+      <p><b>I love you so much, my wife. ❤️😘</b><br>Happy Birthday in advance, baby! 🫂🎁</p>
+      <div class="signature">— Tumhara pagal ❤️</div>
+    </section>
+
+    <footer>Made with too much love for My Wife 🐷❤️</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>
-
