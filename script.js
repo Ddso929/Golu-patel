@@ -160,6 +160,12 @@ fireworksBtn?.addEventListener('click',()=>{
   celebrate();
 });
 
+// Automatic fireworks: a welcome burst, then gentle celebratory bursts while the page is open.
+window.addEventListener('load',()=>{
+  setTimeout(()=>{ if(document.visibilityState==='visible') celebrate(); }, 1200);
+  setInterval(()=>{ if(document.visibilityState==='visible') celebrate(); }, 18000);
+});
+
 
 // Extra romantic surprises: gift welcome, typed love letter, and final message.
 document.addEventListener('DOMContentLoaded', () => {
@@ -260,3 +266,16 @@ document.addEventListener('DOMContentLoaded',()=>{
  }));
  document.getElementById('bonusHeartsBtn')?.addEventListener('click',()=>{for(let i=0;i<36;i++){setTimeout(()=>{const el=document.createElement('span');el.className='petal';el.textContent=['💖','❤️','💕','✨','🌹'][i%5];el.style.left=(Math.random()*100)+'vw';el.style.fontSize=(18+Math.random()*20)+'px';el.style.animationDuration=(4+Math.random()*3)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),8000);},i*55);}});
 });
+
+
+// Extra interactive romantic features
+let reasonIndex=0;
+const reasons=["Tumhari smile mere din ko roshan kar deti hai. ✨","Tum mujhe ghar jaisa sukoon deti ho. 🏡","Tumhari hasi meri favourite sound hai. 😊","Tum meri best friend bhi ho. 🫶","Tumhare saath simple moments bhi special lagte hain. 💗","Tum mujhe better insaan banne ki yaad dilati ho. 🌷","Tumhari kindness mujhe inspire karti hai. ❤️","Tumhare saath future imagine karna beautiful lagta hai. ♾️","Tum meri favourite notification ho. 📱💞","Har din tumhe choose karna meri favourite choice hai. 👑"];
+document.getElementById('queenEntryBtn')?.addEventListener('click',()=>{document.getElementById('queenEntry')?.classList.add('opened');for(let i=0;i<18;i++)setTimeout(()=>{if(typeof makePetal==='function')makePetal(['👑','💖','✨','🌹'][i%4]);},i*80);});
+document.querySelectorAll('[data-treasure]').forEach(b=>b.addEventListener('click',()=>{const o=document.getElementById('treasureResult');if(o)o.textContent=b.dataset.treasure==='right'?'Treasure unlocked! 💎 The real treasure is you, my queen. 👑❤️':'Not quite, baby 😄 Try the answer that makes my heart smile. 💗';}));
+document.getElementById('nextReasonBtn')?.addEventListener('click',()=>{reasonIndex=(reasonIndex+1)%100;const o=document.getElementById('reasonText');if(o)o.textContent='Reason '+(reasonIndex+1)+': '+reasons[reasonIndex%reasons.length];});
+document.querySelectorAll('[data-gift]').forEach(b=>b.addEventListener('click',()=>{const msgs={1:'Gift 1: One unlimited hug, whenever you need it. 🫂❤️',2:'Gift 2: One date night planned just for us. 🌹',3:'Gift 3: My promise to keep choosing you, every day. ♾️'};const o=document.getElementById('threeGiftMessage');if(o)o.textContent=msgs[b.dataset.gift];if(typeof celebrate==='function')celebrate();}));
+let mediaRecorder=null, voiceChunks=[];
+const recBtn=document.getElementById('recordWishBtn'), stopBtn=document.getElementById('stopWishBtn');
+recBtn?.addEventListener('click',async()=>{const status=document.getElementById('voiceStatus');if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){if(status)status.textContent='Voice recording is not supported in this browser. You can add a recorded audio file instead.';return;}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});voiceChunks=[];mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>{if(e.data.size)voiceChunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(voiceChunks,{type:mediaRecorder.mimeType||'audio/webm'});const player=document.getElementById('voicePlayback');if(player){player.src=URL.createObjectURL(blob);player.hidden=false;}stream.getTracks().forEach(t=>t.stop());if(status)status.textContent='Your voice wish is ready to play on this page. ❤️';};mediaRecorder.start();recBtn.disabled=true;if(stopBtn)stopBtn.disabled=false;if(status)status.textContent='Recording… bolo, “Happy Birthday meri jaan!” 🎙️';}catch(e){if(status)status.textContent='Microphone permission nahi mili. Browser settings mein microphone allow karo.';}});
+stopBtn?.addEventListener('click',()=>{if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();recBtn.disabled=false;stopBtn.disabled=true;});

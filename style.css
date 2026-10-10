@@ -135,3 +135,32 @@ footer{text-align:center;opacity:.55;font-size:12px;padding:10px 0 24px}
 
 /* 50 extra interactive mini-surprises */
 .bonus-section{margin-top:22px;text-align:center}.bonus-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:20px 0}.mini-surprise{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:7px;min-height:100px;padding:13px 12px;border:1px solid rgba(255,255,255,.15);border-radius:16px;background:linear-gradient(145deg,rgba(255,75,135,.13),rgba(255,255,255,.045));color:#fff;cursor:pointer;transition:transform .18s,border-color .18s,background .18s}.mini-surprise:active{transform:scale(.97)}.mini-surprise.opened{border-color:rgba(255,130,180,.85);background:rgba(255,60,125,.2)}.mini-number{font-size:11px;letter-spacing:1px;color:#ff9dc1;font-weight:800}.mini-surprise strong{font-size:13px;line-height:1.25}.mini-open{font-size:11px;opacity:.7}.bonus-reveal{min-height:76px;display:grid;place-items:center;padding:18px;margin:12px 0 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px dashed rgba(255,155,195,.4);line-height:1.6}.bonus-reveal.pop{animation:bonusPop .35s ease}@keyframes bonusPop{0%{transform:scale(.96);opacity:.4}100%{transform:scale(1);opacity:1}}@media(min-width:560px){.bonus-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+
+/* Updated deluxe strawberry-and-heart birthday cake */
+.cake-layer-one{background:repeating-linear-gradient(90deg,#ff6f9f 0 18px,#ffc1d7 18px 36px);border-top:13px solid #fff7fb}
+.cake-layer-two{background:linear-gradient(135deg,#fff1f7,#ffb0cf 55%,#ff75a8);box-shadow:inset 0 -6px 0 #ef4e8a,0 7px 14px #0003}
+.cake-top{background:radial-gradient(ellipse at 50% 40%,#fff 0 20%,#ffe0ed 55%,#ff8dbd 100%);border:4px solid #ff6f9f;box-shadow:0 0 18px #ff7bab66}
+.cake-heart{display:block;color:#ff347f;text-align:center;font-size:23px;line-height:34px;text-shadow:0 2px 3px #fff8}
+.cake-layer-one span{filter:drop-shadow(0 1px 2px #a5003a55)}
+.cake-slice{font-size:42px}
+
+
+/* Ultimate romantic additions */
+.queen-entry{background:linear-gradient(145deg,rgba(255,220,240,.12),rgba(255,190,120,.08));border:1px solid rgba(255,220,240,.35)}
+.queen-entry .letter-icon{font-size:54px;animation:pulse 1.5s infinite}
+.voice-playback{width:100%;margin-top:14px}.treasure-options,.gift-buttons{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:16px 0}.treasure-options button,.gift-buttons button{border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:12px 15px;color:#fff;background:rgba(255,255,255,.1);font:inherit}.starfield{font-size:clamp(24px,6vw,42px);line-height:1.9;letter-spacing:5px;color:#ffd8f0;text-shadow:0 0 16px #ff83cf;animation:twinkle 2s infinite alternate}.dream-item{display:block;text-align:left;margin:12px auto;padding:12px;border-radius:14px;background:rgba(255,255,255,.07)}.dream-item input{accent-color:#ff7cb8;transform:scale(1.2);margin-right:10px}@keyframes twinkle{from{opacity:.65;filter:brightness(.8)}to{opacity:1;filter:brightness(1.5)}}
+
+
+/* Cute future-planning surprise card */
+.future-planning-card{padding:28px 16px 42px;display:flex;justify-content:center;position:relative;z-index:1}
+.future-card-inner{width:min(100%,620px);text-align:center;padding:26px 22px;border:1px solid rgba(255,190,218,.42);border-radius:24px;background:linear-gradient(145deg,rgba(91,20,58,.82),rgba(35,5,25,.92));box-shadow:0 12px 45px rgba(255,55,143,.15)}
+.future-card-emoji{font-size:2.4rem;margin-bottom:10px}
+.future-eyebrow{letter-spacing:.12em;font-size:.78rem;color:#ffc2dd;font-weight:800}
+.future-card-inner h2{font-size:clamp(1.5rem,5vw,2.1rem);margin:12px 0;color:#ffe3ef}
+.future-card-inner p{line-height:1.8;font-size:1.02rem}
+.future-card-promise{color:#ffc2dd;font-weight:700;margin-top:18px}
+
+
+/* Future baby names card */
+.future-kids-names { margin: 16px 0; padding: 12px 16px; border: 1px solid rgba(255, 192, 203, .65); border-radius: 18px; background: rgba(255, 220, 235, .12); color: #ffb7d5; font-size: clamp(1.15rem, 4vw, 1.5rem); font-weight: 700; text-align: center; letter-spacing: .3px; }
