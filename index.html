@@ -8,6 +8,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <div id="welcomeGift" class="welcome-gift">
+    <div class="gift-card">
+      <div class="gift-emoji">🎁</div>
+      <p class="eyebrow">JUST FOR YOU, MY LOVE</p>
+      <h1>Open Me, My Love ❤️</h1>
+      <p>Happy Birthday in advance, meri jaan! ❤️🥹</p><p class="welcome-note">Ye chhota sa website sirf tumhare liye hai. Tum meri favourite person ho, meri khushi ho, aur meri har dua ka sabse pyaara hissa ho. I love you, forever. 💗</p>
+      <button id="openGiftBtn" class="next">🎀 Open Your Gift</button><p class="tap-note">🎵 Sound on karke surprise enjoy karna</p>
+    </div>
+  </div>
+
   <div class="hearts" aria-hidden="true"></div>
 
   <div id="cover" class="cover">
@@ -35,7 +46,7 @@
 
     <section class="card">
       <div class="photo-wrap">
-        <img id="photo" src="1.jpg" alt="My Wife">
+        <img id="photo" src="first-meeting.jpg" alt="My Wife">
         <div class="photo-count"><span id="count">1</span> / 6</div>
       </div>
       <div class="message" id="message"></div>
@@ -80,7 +91,7 @@
       </div>
       <div class="cake-actions">
         <button id="cutCakeBtn" class="next">🔪 Cut the Cake, Baby! 🎂</button>
-        <button id="fireworksBtn" class="next fireworks-btn">🎆 Patakhe chalao!</button>
+        <button id="fireworksBtn" class="next fireworks-btn">🎆 Patakhe phir se chalao!</button>
       </div>
       <p id="cakeMessage" class="cake-message" aria-live="polite">Make a wish, my wife! ❤️✨</p>
     </section>
@@ -104,9 +115,139 @@
       <div class="signature">— Tumhara pagal ❤️</div>
     </section>
 
+
+    <section class="card heartbeat-card" id="heartSection">
+      <div class="letter-icon heartbeat">❤️</div><h2>My Heart Beats for You</h2>
+      <p>Har dhadkan mein bas tum, meri jaan. 💗</p>
+      <button id="heartBtn" class="next">💓 Feel My Love</button><p id="heartMessage" aria-live="polite"></p>
+    </section>
+
+    <section class="card timeline-card" id="ourStory">
+      <div class="letter-icon">🛤️💗</div><h2>Our Little Love Story</h2><p class="soft-copy">Hamari story ki har memory mere liye priceless hai. 🫶🏻</p>
+      <div class="timeline"><div><b>✨ The Beginning</b><p>Woh pehli mulaqat, jahan se meri favourite story shuru hui.</p></div><div><b>🫶 Little Moments</b><p>Chhoti-chhoti baatein, hasi, nok-jhok aur pyaari memories.</p></div><div><b>❤️ Today & Always</b><p>Aaj bhi tum meri favourite person ho — aur hamesha rahogi.</p></div></div>
+    </section>
+
+    <section class="card reasons-card" id="reasons">
+      <div class="letter-icon">💗</div><h2>20 Reasons Why I Love You</h2><p>Button dabao aur har baar ek nayi baat padho. 🥹</p>
+      <div id="reasonText" class="reveal-text">Tumhari smile meri favourite hai. ❤️</div><button id="reasonBtn" class="next">💞 Next Reason</button><p id="reasonCount" class="soft-copy">1 / 20</p>
+    </section>
+
+    <section class="card open-when-card" id="openWhen">
+      <div class="letter-icon">✉️💌</div><h2>Open When…</h2><p>Jab bhi zaroorat ho, apna letter choose karna. ❤️</p>
+      <div class="open-when-buttons"><button data-letter="sad">🥺 Jab sad ho</button><button data-letter="miss">🫂 Jab meri yaad aaye</button><button data-letter="smile">😊 Jab smile chahiye</button></div>
+      <p id="openWhenText" class="reveal-text" aria-live="polite">Apna ek letter choose karo, meri jaan. 💗</p>
+    </section>
+
+    <section class="card star-card" id="starsSection">
+      <div class="letter-icon">🌙✨</div><h2>You Are My Universe</h2><p>Har taare se zyada special tum ho. Meri duniya ko khoobsurat banane ke liye thank you. ❤️</p>
+      <div class="star-sky" aria-label="Decorative night sky">✦　·　✧　⋆　♡　✦　·　✧　⋆　✦<br>⋆　✧　·　✨　·　✧　⋆<br>♡　⋆　✦　·　✧　·　♡</div>
+    </section>
+
+    <section class="card favorite-card" id="favoritePhoto">
+      <div class="letter-icon">🖼️</div><h2>My Favorite Memories</h2><p>In photos mein se koi ek memory tumhare dil ke sabse kareeb ho, toh usse yaad rakhna. 💗</p>
+      <div class="polaroid"><img src="her-smile.jpg" alt="A special memory" loading="lazy"><p>My favorite smile, my favorite person. ❤️</p></div>
+    </section>
+
+    <section class="card quiz-card" id="loveQuiz">
+      <div class="letter-icon">🥰</div><h2>Little Love Quiz</h2><p>Ready, baby? Ek answer choose karo. 😘</p>
+      <p class="quiz-question">Meri life ki sabse special person kaun hai?</p>
+      <div class="quiz-options"><button data-correct="false">My phone 📱</button><button data-correct="true">Meri wife, My Queen 👑❤️</button><button data-correct="false">Chocolate 🍫</button></div>
+      <p id="quizResult" class="reveal-text" aria-live="polite"></p>
+    </section>
+
+    <section class="card scratch-card" id="scratchGift">
+      <div class="letter-icon">🎟️✨</div><h2>Scratch to Reveal Your Gift</h2><p>Card ko tap karo aur secret wish reveal karo. 🎁</p>
+      <button id="scratchBtn" class="scratch-surface">✨ TAP TO REVEAL ✨</button><p id="scratchMessage" class="reveal-text" aria-live="polite"></p>
+    </section>
+
+    <section class="card promise-card" id="promise">
+      <div class="letter-icon">♾️❤️</div><h2>My Forever Promise</h2><p>Main promise karta hoon ki tumhari khushi, respect aur saath ko hamesha dil se importance dunga. Perfect nahi hoon, par humare rishte ke liye hamesha sincerely try karunga. 🫶🏻</p>
+      <button id="promiseBtn" class="next">🤝 Seal Our Promise</button><p id="promiseMessage" aria-live="polite"></p>
+    </section>
+
+    <section class="card final-grand-card" id="grandFinale">
+      <div class="letter-icon">👑💖</div><h2>My Queen, My Forever</h2><p>Happy Birthday, meri jaan. Tum sirf meri wife nahi, meri best friend, meri happiness aur meri favourite home ho. I would choose you, every time. ❤️</p>
+      <button id="grandFinaleBtn" class="next">✨ Make a Wish, My Queen</button><p id="grandFinaleMessage" aria-live="polite"></p>
+    </section>
+
+
+    <section class="card bonus-section" id="bonus50">
+      <p class="eyebrow">50 EXTRA LITTLE SURPRISES 💗</p>
+      <h2>50 More Reasons to Smile, My Queen</h2>
+      <p>Har card par tap karo—tumhare liye ek naya message ya mini-surprise hai. ❤️</p>
+      <div class="bonus-grid"><button class="mini-surprise" data-message="Tumhari smile meri favourite roshni hai. ✨"><span class="mini-number">01</span><strong>Compliment of the Day</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Door ho ya paas, ek warm hug tumhare naam. 🫂"><span class="mini-number">02</span><strong>Virtual Hug</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ek virtual kiss, sirf meri jaan ke liye. 😘"><span class="mini-number">03</span><strong>Kiss Button</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tum hasti ho toh mera din ban jaata hai. 😊"><span class="mini-number">04</span><strong>Happiness Button</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tumhare paas mujhe ghar jaisa sukoon milta hai. 🏡"><span class="mini-number">05</span><strong>My Safe Place</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Wife bhi, best friend bhi—lucky hoon main. 🫶"><span class="mini-number">06</span><strong>Best Friend Forever</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Meri life ka hissa banne ke liye thank you. ❤️"><span class="mini-number">07</span><strong>Thank You Note</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tumhari chhoti-chhoti baatein bhi mujhe yaad rehti hain. 💗"><span class="mini-number">08</span><strong>Little Things I Notice</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tumhari smile meri favourite picture hai. 😍"><span class="mini-number">09</span><strong>Your Beautiful Smile</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="🌹🌷🌸💐 Ye flowers tumhare liye, meri queen."><span class="mini-number">10</span><strong>Virtual Bouquet</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tum ho toh rang hain, tum ho toh bahaar; tumse hi roshan mera sansaar. 💞"><span class="mini-number">11</span><strong>A Tiny Poem</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Aaj ka plan: tum, main, tasty food aur lots of smiles. 🍰"><span class="mini-number">12</span><strong>Choose Our Date</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ek movie night—snacks tum choose karna. 🍿"><span class="mini-number">13</span><strong>Movie Night Promise</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Gaana chalao aur imagine karo hum saath dance kar rahe hain. 💃"><span class="mini-number">14</span><strong>Dance With Me</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ek din saath nayi jagah explore karenge. ✈️"><span class="mini-number">15</span><strong>Travel Dream</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ek sunset, do cups chai aur dher saari baatein. 🌅"><span class="mini-number">16</span><strong>Sunset Together</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Baarish, chai aur tumhara saath. ☔"><span class="mini-number">17</span><strong>Rainy Day Promise</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Kabhi-kabhi bas raat bhar baatein karni hain. 🌙"><span class="mini-number">18</span><strong>Midnight Talk</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tumhare saath breakfast bhi special lagta hai. ☕"><span class="mini-number">19</span><strong>Breakfast Date</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Aaj tumhari favourite treat meri taraf se. 🍫"><span class="mini-number">20</span><strong>Favorite Treat</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Kabhi hurt kiya ho toh sorry; main tumhe samajhna chahta hoon. 🫂"><span class="mini-number">21</span><strong>A Little Apology</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tumhari feelings mere liye important hain. 💌"><span class="mini-number">22</span><strong>I Am Listening</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Pyaar ke saath respect bhi hamesha. 🤍"><span class="mini-number">23</span><strong>Respect Always</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Problems ke against hum dono ek team hain. 🤝"><span class="mini-number">24</span><strong>Team Us</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tum jo sapna dekho, main tumhe cheer karunga. 📣"><span class="mini-number">25</span><strong>Cheerleader Mode</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tumhari mehnat aur himmat par mujhe proud hai. 🌟"><span class="mini-number">26</span><strong>Proud of You</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Aaj rest karo, baaki duniya baad mein. 🛋️"><span class="mini-number">27</span><strong>Rest Day Pass</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ek deep breath lo, meri jaan. Main tumhare saath hoon. 🌸"><span class="mini-number">28</span><strong>Stress-Free Reminder</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tumhari khushi aur sukoon matter karta hai. ❤️"><span class="mini-number">29</span><strong>You Matter</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Kisi reason ki zaroorat nahi—bas tumse pyaar hai. ♾️"><span class="mini-number">30</span><strong>No-Reason Love</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Aaj ek happy memory yaad karke smile karna. 🫙"><span class="mini-number">31</span><strong>Memory Jar</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ek cozy home, laughter aur humari little traditions. 🏡"><span class="mini-number">32</span><strong>Future Home Dream</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Har saal tumhara birthday aur bhi special banayenge. 🎂"><span class="mini-number">33</span><strong>Our Traditions</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ab ek cute selfie banti hai! 📸"><span class="mini-number">34</span><strong>Photo Booth Pose</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Is message ko padhkar ek badi si smile do. 😁"><span class="mini-number">35</span><strong>Smile Challenge</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Tap karke hearts ki baarish bulao. 💖"><span class="mini-number">36</span><strong>Heart Confetti</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Aaj tumhari lucky star wish: khush raho. ⭐"><span class="mini-number">37</span><strong>Lucky Star</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Dil ki ek wish socho aur uske liye ek step plan karo. ✨"><span class="mini-number">38</span><strong>Wish Jar</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Aaj ki ek cheez batao jiske liye thankful ho. 🙏"><span class="mini-number">39</span><strong>Gratitude Moment</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Khud ko bhi utna pyaar do jitna tum sabko deti ho. 🌷"><span class="mini-number">40</span><strong>Compliment Yourself</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="👑 Ye crown officially meri queen ka hai."><span class="mini-number">41</span><strong>Queen Crown</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Pyaar naapne ka meter nahi—mera pyaar endless hai. 💞"><span class="mini-number">42</span><strong>Love Meter</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Hamare special song ki ek playlist banayenge. 🎶"><span class="mini-number">43</span><strong>Forever Playlist</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Website ke baad ek real handwritten note bhi milega. ✍️"><span class="mini-number">44</span><strong>Handwritten Note IRL</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Jab possible ho, ek extra-long call sirf hum dono ki. 📞"><span class="mini-number">45</span><strong>Surprise Call</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ek purani favourite memory ko phir se recreate karenge. 🥹"><span class="mini-number">46</span><strong>Memory Recreate</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Phone side mein, sirf quality time. ⏳"><span class="mini-number">47</span><strong>One Hour Together</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Ek din tumhari choice—food, film, plan, sab. 🎀"><span class="mini-number">48</span><strong>Your Choice Day</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Achhe din ho ya mushkil, tum akeli nahi ho. 🤍"><span class="mini-number">49</span><strong>Unconditional Support</strong><span class="mini-open">Tap to open ✨</span></button>
+<button class="mini-surprise" data-message="Is page ke end par ek tight virtual hug. 🫂"><span class="mini-number">50</span><strong>Final Hug</strong><span class="mini-open">Tap to open ✨</span></button>
+      </div>
+      <div id="bonusReveal" class="bonus-reveal" aria-live="polite">Choose any surprise above, meri jaan. 💌</div>
+      <button id="bonusHeartsBtn" class="next">💖 Shower Me With Love</button>
+    </section>
+
     <footer>Made with too much love for My Wife 🐷❤️</footer>
   </main>
 
   <script src="script.js"></script>
+
+  <section id="loveLetterSection" class="love-extra hidden">
+    <p class="eyebrow">FROM MY HEART 💌</p>
+    <h2>A Letter For My Favorite Person</h2>
+    <p id="typedLetter" class="typed-letter"></p>
+  </section>
+
+  <section id="foreverSection" class="love-extra hidden">
+    <p class="eyebrow">ONE LAST SURPRISE ♾️</p>
+    <h2>Ek last surprise hai…</h2>
+    <button id="lastSurpriseBtn" class="next">💗 Click for one last surprise</button>
+    <p id="lastSurpriseText" class="last-surprise-text"></p>
+    <p class="forever-line">Aaj tumhara birthday hai, lekin gift toh mujhe mila tha jab tum meri life mein aayi. ❤️</p>
+  </section>
+
 </body>
 </html>

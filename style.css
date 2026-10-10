@@ -96,3 +96,42 @@ footer{text-align:center;opacity:.55;font-size:12px;padding:10px 0 24px}
 .love-note>span{font-size:24px;line-height:1.3}
 .love-note p{margin:0;line-height:1.65;opacity:.94}
 .final-note{border-color:rgba(255,140,190,.48);background:linear-gradient(120deg,rgba(255,60,125,.2),rgba(255,255,255,.07))}
+
+
+/* Added romantic surprise sections */
+.hidden { display: none !important; }
+.welcome-gift {
+  position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center;
+  justify-content: center; padding: 22px; background: radial-gradient(circle at top, #6f1747, #170916 70%);
+  color: #fff; text-align: center;
+}
+.gift-card { max-width: 440px; width: 100%; padding: 32px 24px; border: 1px solid rgba(255,255,255,.22);
+  border-radius: 28px; background: rgba(255,255,255,.08); box-shadow: 0 20px 80px #0006; }
+.gift-emoji { font-size: 72px; animation: giftBounce 1.5s infinite; }
+.eyebrow { letter-spacing: .18em; font-size: .72rem; opacity: .8; }
+.gift-card h1, .love-extra h2 { color: #ffd5e8; }
+.gift-card p { line-height: 1.7; }
+.love-extra { max-width: 760px; margin: 32px auto; padding: 28px 22px; border-radius: 24px;
+  text-align: center; color: inherit; background: rgba(255, 105, 160, .10); border: 1px solid rgba(255, 160, 200, .25); }
+.typed-letter { min-height: 8em; line-height: 1.9; white-space: pre-line; }
+.last-surprise-text { font-size: 1.25rem; font-weight: 700; line-height: 1.8; color: #ff8fbd; }
+.forever-line { margin-top: 24px; font-style: italic; line-height: 1.8; }
+@keyframes giftBounce { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-9px) rotate(3deg); } }
+
+
+/* Extra personal welcome message and heart burst */
+.welcome-note{max-width:350px;margin:12px auto 18px;line-height:1.8;color:#ffe1ee;font-weight:500}
+.tap-note{font-size:12px;opacity:.72;margin-top:12px}
+.opening-heart{position:fixed;z-index:10000;left:var(--x);top:78vh;font-size:var(--size);pointer-events:none;animation:openingFloat 2.8s ease-out forwards}
+@keyframes openingFloat{0%{transform:translateY(0) scale(.65) rotate(0);opacity:0}15%{opacity:1}100%{transform:translateY(-75vh) scale(1.3) rotate(28deg);opacity:0}}
+
+
+/* All-in romantic feature pack */
+.love-extra{width:min(94vw,720px);margin:18px auto;padding:24px 18px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:rgba(255,255,255,.07);text-align:center;position:relative;z-index:2;white-space:normal}
+.love-extra h2,.card h2{line-height:1.2}.eyebrow{letter-spacing:2px;font-size:11px;color:#ffc6df}.typed-letter{white-space:pre-line;line-height:1.8}.opening-heart{position:fixed;top:105vh;left:var(--x);font-size:var(--size);z-index:999;pointer-events:none;animation:openingFloat 3.4s ease-out forwards}@keyframes openingFloat{to{transform:translateY(-125vh) rotate(30deg);opacity:0}}
+.heartbeat{animation:pulse .8s infinite;display:inline-block;text-shadow:0 0 25px #ff4f91}.soft-copy{opacity:.75;line-height:1.6}.timeline{display:grid;gap:12px;text-align:left;margin:20px 0}.timeline>div{border-left:3px solid #ff6b9f;padding:10px 14px;background:rgba(255,255,255,.045);border-radius:0 14px 14px 0}.timeline p{margin:6px 0 0;opacity:.82;line-height:1.55}.reveal-text{padding:16px;border-radius:18px;background:rgba(255,75,140,.12);border:1px solid rgba(255,140,190,.18);font-size:18px;line-height:1.6;margin:16px 0}.open-when-buttons,.quiz-options{display:grid;gap:9px;margin:14px 0}.open-when-buttons button,.quiz-options button,.scratch-surface{border:1px solid rgba(255,255,255,.18);border-radius:15px;padding:12px;color:#fff;background:rgba(255,255,255,.09);cursor:pointer;font-weight:700}.star-sky{margin:16px 0;padding:22px 8px;border-radius:20px;background:radial-gradient(ellipse at center,#38133c,#090816);font-size:clamp(18px,5vw,28px);line-height:2.2;letter-spacing:2px;color:#ffe6f3;animation:twinkle 2.2s ease-in-out infinite alternate}@keyframes twinkle{to{filter:brightness(1.5);text-shadow:0 0 18px #ffadd4}}
+.polaroid{width:min(100%,330px);margin:18px auto;padding:10px 10px 18px;background:#fff;color:#32101f;transform:rotate(-1deg);box-shadow:0 12px 28px #0005}.polaroid img{display:block;width:100%;height:330px;object-fit:cover}.polaroid p{margin:12px 0 0;font-family:Georgia,serif}.quiz-question{font-size:19px;font-weight:800;line-height:1.5}.scratch-surface{width:100%;min-height:100px;background:linear-gradient(135deg,#a72a62,#f16ba5,#6e2a83);font-size:20px;box-shadow:inset 0 0 0 2px #ffffff22,0 8px 25px #0003}.scratch-surface.revealed{background:linear-gradient(135deg,#311128,#6b1e4a);font-size:16px}.final-grand-card{background:linear-gradient(145deg,rgba(255,77,143,.18),rgba(255,255,255,.06));border-color:rgba(255,174,215,.32);text-align:center}.final-grand-card p{line-height:1.8}.petal{position:fixed;top:-35px;z-index:3;pointer-events:none;animation:petalFall linear forwards}@keyframes petalFall{to{transform:translateY(115vh) rotate(620deg);opacity:.1}}
+@media(min-width:560px){.open-when-buttons,.quiz-options{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* 50 extra interactive mini-surprises */
+.bonus-section{margin-top:22px;text-align:center}.bonus-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:20px 0}.mini-surprise{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:7px;min-height:100px;padding:13px 12px;border:1px solid rgba(255,255,255,.15);border-radius:16px;background:linear-gradient(145deg,rgba(255,75,135,.13),rgba(255,255,255,.045));color:#fff;cursor:pointer;transition:transform .18s,border-color .18s,background .18s}.mini-surprise:active{transform:scale(.97)}.mini-surprise.opened{border-color:rgba(255,130,180,.85);background:rgba(255,60,125,.2)}.mini-number{font-size:11px;letter-spacing:1px;color:#ff9dc1;font-weight:800}.mini-surprise strong{font-size:13px;line-height:1.25}.mini-open{font-size:11px;opacity:.7}.bonus-reveal{min-height:76px;display:grid;place-items:center;padding:18px;margin:12px 0 16px;border-radius:18px;background:rgba(255,255,255,.08);border:1px dashed rgba(255,155,195,.4);line-height:1.6}.bonus-reveal.pop{animation:bonusPop .35s ease}@keyframes bonusPop{0%{transform:scale(.96);opacity:.4}100%{transform:scale(1);opacity:1}}@media(min-width:560px){.bonus-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
