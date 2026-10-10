@@ -1,15 +1,11 @@
-const photos = Array.from({length:10}, (_,i)=>`${i+1}.jpg`);
+const photos = ['first-meeting.jpg','hands-together.jpg','memory-collage.jpg','memory-frame.jpg','her-smile.jpg','hands-memory.jpg'];
 const messages = [
-  "🎂 Advance Happy Birthday, my wife! You make my world brighter. ❤️",
-  "🥹 Tumhari smile is literally my favourite thing in this world.",
-  "💗 I hope tumhari every wish come true, meri jaan.",
-  "🫶 Tumhare saath simple moments bhi special memories ban jaate hain.",
-  "🤭 Haan haan, meri cute si moti… birthday girl ko extra pyaar milega!",
-  "✨ You deserve happiness, success, peace and endless love.",
-  "😂 Tumhari cute nautanki ke bina meri life boring hoti.",
-  "👑 Today and always, you will be my queen, my favourite person.",
-  "🥰 I may not be perfect with words, but my love for you is real.",
-  "❤️ Happy Birthday in advance, baby. I love you more than you know!"
+  "🫠 Our first meeting — the day my favourite story began. ❤️",
+  "🫶 Haath mein haath, aur dil mein tum. 💗",
+  "🥹 Chhoti-chhoti memories, mere liye sabse precious. ❤️",
+  "💞 Har photo mein ek alag si yaad chhupi hai.",
+  "😍 Tumhari smile meri favourite feeling hai, meri jaan.",
+  "❤️ These little moments with you mean everything to me."
 ];
 
 const cover = document.getElementById("cover");

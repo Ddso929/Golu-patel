@@ -1,19 +1,17 @@
-# My Wife 🐷❤️ — Birthday Surprise
+# My Wife ❤️ Birthday Surprise
 
-A romantic, mobile-friendly birthday surprise page with a photo slideshow, Hinglish + English love messages, floating hearts, and the supplied `phir-kabhi.mp3` soundtrack.
+A mobile-friendly birthday page for **13 November 2026** with a live countdown, photo slideshow, background music, cake-cutting animation, fireworks, and Hinglish/English love messages.
 
-## Run locally
-Open `index.html` in a browser. Tap the surprise button to start the music (browsers require a tap before audio can play).
+## Important: keep all files together
+Do not upload only `index.html`. Keep `index.html`, `style.css`, `script.js`, `phir-kabhi.mp3`, the six memory JPG photos, and `vercel.json` in the same project folder.
 
-## Deploy on Vercel
+## Preview on a phone/computer
+Extract the ZIP, then open `index.html` in a browser. Tap **Open your surprise** to start the music (phones require a tap before music can play).
+
+## Deploy to Vercel
 1. Extract this ZIP.
-2. Upload the contents to a GitHub repository.
-3. Import the repository in Vercel.
-4. Choose **Other** as the framework preset and deploy.
+2. Upload the extracted project files to a GitHub repository (all files, not the ZIP itself).
+3. In Vercel, choose **Add New → Project**, import that GitHub repository, and click **Deploy**.
+4. Open the deployed URL. Test **Open your surprise**, **Cut the Cake**, and **Patakhe chalao**.
 
-## Files
-- `index.html` — page structure and birthday letter
-- `style.css` — responsive styling
-- `script.js` — slideshow, messages, floating hearts, music control
-- `1.jpg` … `10.jpg` — photos
-- `phir-kabhi.mp3` — background music
+If it still doesn't work, send me a screenshot of the screen/error and I'll help fix that exact issue.
