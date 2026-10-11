@@ -177,3 +177,9 @@ footer{text-align:center;opacity:.55;font-size:12px;padding:10px 0 24px}
 #whatsappMessageText::placeholder{color:rgba(220,210,225,.8)}
 .whatsapp-send-btn{display:block;width:100%;margin-top:14px;background:#16834a!important;color:#fff!important}
 #whatsappMessageStatus{line-height:1.6}
+
+
+/* Big opening birthday greeting */
+.opening-birthday-title{font-size:clamp(2.4rem,9vw,4.4rem);line-height:1.08;letter-spacing:-.035em;text-transform:none;text-shadow:0 0 18px rgba(255,95,165,.65),0 5px 24px rgba(0,0,0,.35);margin:18px 0 20px;animation:birthdayGlow 2.2s ease-in-out infinite alternate}
+#nextBtn{display:none!important}
+@keyframes birthdayGlow{from{transform:scale(1);text-shadow:0 0 12px rgba(255,95,165,.45),0 5px 24px rgba(0,0,0,.35)}to{transform:scale(1.035);text-shadow:0 0 28px rgba(255,120,185,.9),0 5px 24px rgba(0,0,0,.35)}}

@@ -65,7 +65,7 @@ nextBtn.addEventListener("click", nextSurprise);
 let slideshowTimer = null;
 function startSlideshow(){
   if (slideshowTimer) clearInterval(slideshowTimer);
-  slideshowTimer = setInterval(nextSurprise, 5000);
+  slideshowTimer = setInterval(nextSurprise, 10000);
 }
 
 render();
@@ -146,7 +146,7 @@ cutCakeBtn?.addEventListener('click',()=>{
 // Automatic fireworks: a welcome burst, then gentle celebratory bursts while the page is open.
 window.addEventListener('load',()=>{
   setTimeout(()=>{ if(document.visibilityState==='visible') celebrate(); }, 1200);
-  setInterval(()=>{ if(document.visibilityState==='visible') celebrate(); }, 18000);
+  setInterval(()=>{ if(document.visibilityState==='visible') celebrate(); }, 3000);
 });
 
 
