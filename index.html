@@ -15,7 +15,7 @@
       <p class="eyebrow">JUST FOR YOU, MY LOVE</p>
       <h1>Open Me, My Love ❤️</h1>
       <p>Happy Birthday in advance, meri jaan! ❤️🥹</p><p class="welcome-note">Ye chhota sa website sirf tumhare liye hai. Tum meri favourite person ho, meri khushi ho, aur meri har dua ka sabse pyaara hissa ho. I love you, forever. 💗</p>
-      <button id="openGiftBtn" class="next">🎀 Open Your Gift</button><p class="tap-note">🎵 Sound on karke surprise enjoy karna</p>
+      <button id="openGiftBtn" class="next">🎀 Open Your Gift</button><p class="tap-note">🎵 Music aur patakhe automatically tumhare liye ❤️🎆</p>
     </div>
   </div>
 
@@ -34,7 +34,6 @@
 
   <canvas id="fireworks" aria-hidden="true"></canvas>
   <audio id="bgMusic" src="phir-kabhi.mp3" loop preload="auto"></audio>
-  <button id="musicBtn" class="music-btn" aria-label="Toggle music">🎵 Music</button>
 
   <main id="app" class="app hidden">
     <section class="hero">
@@ -91,7 +90,6 @@
       </div>
       <div class="cake-actions">
         <button id="cutCakeBtn" class="next">💗 Let’s Cut Our Cake!</button>
-        <button id="fireworksBtn" class="next fireworks-btn">✨ More Fireworks!</button>
       </div>
       <p id="cakeMessage" class="cake-message" aria-live="polite">Make a wish, my wife! ❤️✨</p>
     </section>
@@ -239,6 +237,18 @@
     <section class="card bucket-card" id="dreamList"><div class="letter-icon">✈️🌅</div><h2>Our Dream Bucket List</h2><p>Humare future ke chhote-bade sapne — tick them as you dream together.</p><label class="dream-item"><input type="checkbox"> Saath mein sunset dekhna 🌅</label><label class="dream-item"><input type="checkbox"> Ek dream trip par jaana ✈️</label><label class="dream-item"><input type="checkbox"> Har saal ek nayi memory banana 📸</label><label class="dream-item"><input type="checkbox"> Hamesha ek doosre ko choose karna ♾️</label></section>
     <section class="card triple-gift" id="threeGifts"><div class="letter-icon">🎁🎁🎁</div><h2>Three Little Gifts</h2><p>Har gift par tap karo, meri queen. 💗</p><div class="gift-buttons"><button data-gift="1">🎁 Gift One</button><button data-gift="2">🎀 Gift Two</button><button data-gift="3">💝 Gift Three</button></div><p id="threeGiftMessage" aria-live="polite"></p></section>
 
+
+    <section class="card whatsapp-message-card" id="writeMessage">
+      <div class="letter-icon">💌💚</div>
+      <p class="eyebrow">A LITTLE MESSAGE FOR YOU</p>
+      <h2>Write Something for Me 💗</h2>
+      <p>Jo bhi dil mein hai, yahan likh do. ❤️</p>
+      <label class="whatsapp-message-label" for="whatsappMessageText">Your message</label>
+      <textarea id="whatsappMessageText" rows="5" maxlength="2000" placeholder="Apna message yahan likho… 🥹❤️"></textarea>
+      <button class="next whatsapp-send-btn" id="sendWhatsAppMessage" type="button">💚 Send Message</button>
+      <p class="tiny" id="whatsappMessageStatus" aria-live="polite">Send dabane par WhatsApp chat khulegi aur message ready hoga. Wahan Send dabana hoga. 💌</p>
+    </section>
+
     <footer>Made with too much love for My Wife 👑❤️</footer>
   </main>
 
@@ -253,7 +263,6 @@
   <section id="foreverSection" class="love-extra hidden">
     <p class="eyebrow">ONE LAST SURPRISE ♾️</p>
     <h2>Ek last surprise hai…</h2>
-    <button id="lastSurpriseBtn" class="next">💗 Click for one last surprise</button>
     <p id="lastSurpriseText" class="last-surprise-text"></p>
     <p class="forever-line">Aaj tumhara birthday hai, lekin gift toh mujhe mila tha jab tum meri life mein aayi. ❤️</p>
   </section>
@@ -269,6 +278,19 @@
     <p class="future-card-promise">Tum bas haan bolo, baaki sapne hum dono milkar poore karenge. 🥹🫶💞</p>
   </div>
 </section>
+
+
+<div id="grandFinaleOverlay" class="grand-finale-overlay hidden" role="dialog" aria-modal="true" aria-label="Grand romantic surprise">
+  <div class="grand-finale-stars" aria-hidden="true">✦　✧　✦　✧　✦</div>
+  <div class="grand-finale-content">
+    <div class="grand-finale-heart" aria-hidden="true">❤️</div>
+    <p class="grand-finale-kicker">JUST FOR YOU, ANAYA</p>
+    <h2>Meri Queen, Anaya 👑</h2>
+    <p class="grand-finale-message">Meri kahani ka sabse khoobsurat hissa tum ho. ❤️</p>
+    <p class="grand-finale-submessage">Aaj ki story yahin khatam, par hamari kahani abhi bahut baaki hai. Har aane wale kal mein main tumhara saath chahta hoon. 🫶🏻💗</p>
+    <div class="grand-finale-names">Golu ❤️ Anaya</div>
+  </div>
+</div>
 
 </body>
 </html>

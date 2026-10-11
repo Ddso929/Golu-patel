@@ -16,7 +16,6 @@ const photo = document.getElementById("photo");
 const message = document.getElementById("message");
 const count = document.getElementById("count");
 const bgMusic = document.getElementById("bgMusic");
-const musicBtn = document.getElementById("musicBtn");
 
 let index = 0;
 
@@ -44,7 +43,6 @@ function hearts(){
 startBtn.addEventListener("click",()=>{
   bgMusic.volume = 0.35;
   bgMusic.play().catch(()=>{});
-  musicBtn.textContent = "🔊 Music";
   cover.style.opacity = "0";
   cover.style.transition = "opacity .6s ease";
   setTimeout(()=>{
@@ -73,16 +71,6 @@ function startSlideshow(){
 render();
 
 
-musicBtn.addEventListener("click", ()=>{
-  if (bgMusic.paused) {
-    bgMusic.play().catch(()=>{});
-    musicBtn.textContent = "🔊 Music";
-  } else {
-    bgMusic.pause();
-    musicBtn.textContent = "🔇 Music";
-  }
-});
-
 
 // Birthday countdown: 13 November 2026 (local time)
 function updateCountdown(){
@@ -104,7 +92,6 @@ setInterval(updateCountdown, 1000);
 // Cake cutting and colorful patakhe/fireworks celebration
 const cakeScene = document.querySelector('.cake-scene');
 const cutCakeBtn = document.getElementById('cutCakeBtn');
-const fireworksBtn = document.getElementById('fireworksBtn');
 const cakeMessage = document.getElementById('cakeMessage');
 const fireworksCanvas = document.getElementById('fireworks');
 const fx = fireworksCanvas.getContext('2d');
@@ -155,10 +142,6 @@ cutCakeBtn?.addEventListener('click',()=>{
   // Fireworks launch automatically the moment the cake is cut.
   if (firstCut) celebrate();
 });
-fireworksBtn?.addEventListener('click',()=>{
-  cakeMessage.textContent='Boom boom! 🎆 Saare patakhe sirf meri birthday queen ke liye! 👑❤️';
-  celebrate();
-});
 
 // Automatic fireworks: a welcome burst, then gentle celebratory bursts while the page is open.
 window.addEventListener('load',()=>{
@@ -175,8 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     openGiftBtn.addEventListener('click', () => {
       // Start the song on the visitor's tap (mobile browsers require a user gesture).
       const music = document.getElementById('bgMusic');
-      const musicToggle = document.getElementById('musicBtn');
-      if (music) { music.volume = 0.35; music.play().then(() => { if (musicToggle) musicToggle.textContent = '🔊 Music'; }).catch(() => {}); }
+      if (music) { music.volume = 0.35; music.play().catch(() => {}); }
       welcomeGift.classList.add('hidden');
       // A little burst of hearts welcomes her into the birthday surprise.
       for (let i = 0; i < 34; i++) {
@@ -202,24 +184,49 @@ document.addEventListener('DOMContentLoaded', () => {
       started = true;
       letterSection.classList.remove('hidden');
       let i = 0;
+      // Slower typing so the reader can follow the love letter comfortably.
       const timer = setInterval(() => {
         letter.textContent = letterText.slice(0, ++i);
         if (i >= letterText.length) clearInterval(timer);
-      }, 32);
+      }, 75);
     }, {threshold: .15});
     // Make section reachable by revealing it once the user reaches the end.
     letterSection.classList.remove('hidden');
     observer.observe(letterSection);
   }
 
-  const lastBtn = document.getElementById('lastSurpriseBtn');
-  const lastText = document.getElementById('lastSurpriseText');
-  if (lastBtn && lastText) {
-    lastBtn.addEventListener('click', () => {
-      lastText.textContent = 'Agar mujhe dobara zindagi jeene ka mauka mile, toh main har baar tumhe hi choose karunga. Happy Birthday, meri jaan. ❤️🫂';
-      lastBtn.textContent = '💖 You are my forever';
-      burstHearts();
-    });
+  // Automatically launch the grand finale when the visitor reaches the last surprise section.
+  const finale = document.getElementById('grandFinaleOverlay');
+  const foreverSection = document.getElementById('foreverSection');
+  let finaleStarted = false;
+
+  function launchGrandFinale() {
+    if (finaleStarted) return;
+    finaleStarted = true;
+    if (finale) finale.classList.remove('hidden');
+    burstHearts();
+    if (typeof celebrate === 'function') celebrate();
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'finale-floating-heart';
+      heart.textContent = ['❤️','💗','💖','💕','🫶🏻'][i % 5];
+      heart.style.left = (Math.random() * 96) + 'vw';
+      heart.style.fontSize = (20 + Math.random() * 25) + 'px';
+      heart.style.setProperty('--duration', (4 + Math.random() * 3) + 's');
+      heart.style.animationDelay = (Math.random() * 1.8) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 9000);
+    }
+  }
+
+  if (foreverSection && finale) {
+    const finaleObserver = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        finaleObserver.disconnect();
+        setTimeout(launchGrandFinale, 900);
+      }
+    }, { threshold: 0.35 });
+    finaleObserver.observe(foreverSection);
   }
 
   function burstHearts() {
@@ -279,3 +286,20 @@ let mediaRecorder=null, voiceChunks=[];
 const recBtn=document.getElementById('recordWishBtn'), stopBtn=document.getElementById('stopWishBtn');
 recBtn?.addEventListener('click',async()=>{const status=document.getElementById('voiceStatus');if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){if(status)status.textContent='Voice recording is not supported in this browser. You can add a recorded audio file instead.';return;}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});voiceChunks=[];mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>{if(e.data.size)voiceChunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(voiceChunks,{type:mediaRecorder.mimeType||'audio/webm'});const player=document.getElementById('voicePlayback');if(player){player.src=URL.createObjectURL(blob);player.hidden=false;}stream.getTracks().forEach(t=>t.stop());if(status)status.textContent='Your voice wish is ready to play on this page. ❤️';};mediaRecorder.start();recBtn.disabled=true;if(stopBtn)stopBtn.disabled=false;if(status)status.textContent='Recording… bolo, “Happy Birthday meri jaan!” 🎙️';}catch(e){if(status)status.textContent='Microphone permission nahi mili. Browser settings mein microphone allow karo.';}});
 stopBtn?.addEventListener('click',()=>{if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();recBtn.disabled=false;stopBtn.disabled=true;});
+
+
+// WhatsApp message composer: opens a pre-filled chat; the visitor must tap Send in WhatsApp.
+(()=>{
+  const button=document.getElementById('sendWhatsAppMessage');
+  const field=document.getElementById('whatsappMessageText');
+  const status=document.getElementById('whatsappMessageStatus');
+  if(!button||!field)return;
+  button.addEventListener('click',()=>{
+    const message=field.value.trim();
+    if(!message){if(status)status.textContent='Pehle apna message likho na 💗';field.focus();return;}
+    const phone='919122950885';
+    const url='https://wa.me/'+phone+'?text='+encodeURIComponent(message);
+    if(status)status.textContent='WhatsApp khul raha hai… chat mein message ready milega. Wahan Send dabana mat bhoolna. 💚';
+    window.open(url,'_blank','noopener,noreferrer');
+  });
+})();
