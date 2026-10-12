@@ -2,6 +2,11 @@
 "use strict";
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 
+/* ---------- reading progress ---------- */
+const progress=$('#readingProgress');
+function updateProgress(){const root=document.documentElement;const max=root.scrollHeight-innerHeight;const value=max>0?Math.min(100,Math.max(0,scrollY/max*100)):0;if(progress)progress.style.width=value+'%';}
+addEventListener('scroll',updateProgress,{passive:true});addEventListener('resize',updateProgress);updateProgress();
+
 /* ---------- background sparkles ---------- */
 const sp=$('#sparkles');
 for(let i=0;i<40;i++){const d=document.createElement('i');d.className='sparkle';
@@ -9,7 +14,7 @@ for(let i=0;i<40;i++){const d=document.createElement('i');d.className='sparkle';
   d.style.setProperty('--d',(3+Math.random()*5)+'s');d.style.animationDelay=(Math.random()*5)+'s';sp.appendChild(d);}
 
 /* ---------- petals ---------- */
-function petals(n,set){set=set||['🌸','💗','🌹','✨','💖'];
+function petals(n,set){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;set=set||['🌸','💗','🌹','✨','💖'];
   for(let i=0;i<n;i++)setTimeout(()=>{const p=document.createElement('span');p.className='petal';
     p.textContent=set[i%set.length];p.style.left=Math.random()*100+'vw';p.style.fontSize=(14+Math.random()*18)+'px';
     p.style.animationDuration=(4+Math.random()*4)+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),9000);},i*70);}
@@ -18,7 +23,7 @@ function petals(n,set){set=set||['🌸','💗','🌹','✨','💖'];
 const cv=$('#fx'),cx=cv.getContext('2d');let parts=[],raf=null;
 function size(){const r=Math.min(devicePixelRatio||1,2);cv.width=innerWidth*r;cv.height=innerHeight*r;cx.setTransform(r,0,0,r,0,0);}
 addEventListener('resize',size);size();
-function burst(x,y){const c=['#ff6b9a','#f7dfa8','#e9c27a','#ffc2d4','#ffffff','#ff9fbd'];
+function burst(x,y){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const c=['#ff6b9a','#f7dfa8','#e9c27a','#ffc2d4','#ffffff','#ff9fbd'];
   for(let i=0;i<80;i++){const a=Math.random()*6.283,s=1.2+Math.random()*4.8;
     parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:60+Math.random()*30,m:90,r:1.2+Math.random()*2.4,c:c[i%c.length]});}
   if(!raf)loop();}
