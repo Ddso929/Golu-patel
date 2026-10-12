@@ -1,331 +1,135 @@
-const photos = ['first-meeting.jpg','hands-together.jpg','memory-collage.jpg','memory-frame.jpg','her-smile.jpg','hands-memory.jpg'];
-const messages = [
-  "🫠 Our first meeting — the day my favourite story began. ❤️",
-  "🫶 Haath mein haath, aur dil mein tum. 💗",
-  "🥹 Chhoti-chhoti memories, mere liye sabse precious. ❤️",
-  "💞 Har photo mein ek alag si yaad chhupi hai.",
-  "😍 Tumhari smile meri favourite feeling hai, meri jaan.",
-  "❤️ These little moments with you mean everything to me."
-];
-
-const cover = document.getElementById("cover");
-const app = document.getElementById("app");
-const startBtn = document.getElementById("startBtn");
-const nextBtn = document.getElementById("nextBtn");
-const photo = document.getElementById("photo");
-const message = document.getElementById("message");
-const count = document.getElementById("count");
-const bgMusic = document.getElementById("bgMusic");
-
-let index = 0;
-
-function render(){
-  photo.classList.add("fade");
-  setTimeout(()=>{
-    photo.src = photos[index];
-    message.innerHTML = `${messages[index]}<span>💞 meri jaan</span>`;
-    count.textContent = index + 1;
-    photo.classList.remove("fade");
-  },180);
-}
-
-function hearts(){
-  const h = document.createElement("div");
-  h.className = "heart";
-  h.textContent = ["❤️","💗","💖","💕","🥹"][Math.floor(Math.random()*5)];
-  h.style.left = Math.random()*100 + "vw";
-  h.style.fontSize = (18 + Math.random()*18) + "px";
-  h.style.animationDuration = (3.5 + Math.random()*3) + "s";
-  document.body.appendChild(h);
-  setTimeout(()=>h.remove(),7000);
-}
-
-startBtn.addEventListener("click",()=>{
-  bgMusic.volume = 0.35;
-  bgMusic.play().catch(()=>{});
-  cover.style.opacity = "0";
-  cover.style.transition = "opacity .6s ease";
-  setTimeout(()=>{
-    cover.remove();
-    app.classList.remove("hidden");
-    render();
-    startSlideshow();
-    setInterval(hearts,450);
-  },600);
-});
-
-function nextSurprise(){
-  index = (index + 1) % photos.length;
-  render();
-}
-
-nextBtn.addEventListener("click", nextSurprise);
-
-// Automatically slide to the next memory every 5 seconds.
-let slideshowTimer = null;
-function startSlideshow(){
-  if (slideshowTimer) clearInterval(slideshowTimer);
-  slideshowTimer = setInterval(nextSurprise, 10000);
-}
-
-render();
-
-
-
-// Birthday countdown: 13 November 2026 (local time)
-function updateCountdown(){
-  const now = new Date();
-  const birthday = new Date(now.getFullYear() < 2026 ? 2026 : now.getFullYear(), 10, 13, 0, 0, 0);
-  const target = birthday.getTime() > now.getTime() ? birthday : new Date(now.getFullYear()+1, 10, 13, 0, 0, 0);
-  let remaining = Math.max(0, target.getTime() - now.getTime());
-  const days = Math.floor(remaining / 86400000); remaining %= 86400000;
-  const hours = Math.floor(remaining / 3600000); remaining %= 3600000;
-  const minutes = Math.floor(remaining / 60000); remaining %= 60000;
-  const seconds = Math.floor(remaining / 1000);
-  const markup = `<div class="time-unit"><strong>${days}</strong><span>Days</span></div><div class="time-unit"><strong>${hours}</strong><span>Hours</span></div><div class="time-unit"><strong>${minutes}</strong><span>Minutes</span></div><div class="time-unit"><strong>${seconds}</strong><span>Seconds</span></div>`;
-  ['countdown','countdown-main'].forEach(id=>{const el=document.getElementById(id); if(el) el.innerHTML=markup;});
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-
-// Cake cutting and colorful patakhe/fireworks celebration
-const cakeScene = document.querySelector('.cake-scene');
-const cutCakeBtn = document.getElementById('cutCakeBtn');
-const cakeMessage = document.getElementById('cakeMessage');
-const fireworksCanvas = document.getElementById('fireworks');
-const fx = fireworksCanvas.getContext('2d');
-let particles = [];
-let fireworksFrame = null;
-function resizeFireworks(){
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  fireworksCanvas.width = Math.floor(window.innerWidth * dpr);
-  fireworksCanvas.height = Math.floor(window.innerHeight * dpr);
-  fireworksCanvas.style.width = window.innerWidth + 'px';
-  fireworksCanvas.style.height = window.innerHeight + 'px';
-  fx.setTransform(dpr,0,0,dpr,0,0);
-}
-window.addEventListener('resize', resizeFireworks);
-resizeFireworks();
-function burst(x, y){
-  const colors = ['#ff4f91','#ffd166','#7afcff','#b68cff','#ffffff','#7dff9b','#ff8a45'];
-  for(let i=0;i<95;i++){
-    const angle = Math.random()*Math.PI*2;
-    const speed = 1.4 + Math.random()*5.2;
-    particles.push({x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,life:45+Math.random()*35,max:80,size:1.5+Math.random()*3,color:colors[Math.floor(Math.random()*colors.length)]});
-  }
-}
-function animateFireworks(){
-  fx.clearRect(0,0,window.innerWidth,window.innerHeight);
-  particles = particles.filter(p=>p.life>0);
-  for(const p of particles){
-    p.x+=p.vx; p.y+=p.vy; p.vx*=.985; p.vy=p.vy*.985+.035; p.life--;
-    fx.globalAlpha=Math.max(0,p.life/p.max);
-    fx.fillStyle=p.color; fx.beginPath(); fx.arc(p.x,p.y,p.size,0,Math.PI*2); fx.fill();
-  }
-  fx.globalAlpha=1;
-  if(particles.length){fireworksFrame=requestAnimationFrame(animateFireworks)}else{fx.clearRect(0,0,window.innerWidth,window.innerHeight);fireworksFrame=null;}
-}
-function celebrate(){
-  if(fireworksFrame) cancelAnimationFrame(fireworksFrame);
-  const w=window.innerWidth,h=window.innerHeight;
-  burst(w*.22,h*.28); burst(w*.78,h*.25); burst(w*.5,h*.18);
-  if(particles.length) animateFireworks();
-  setTimeout(()=>{burst(w*.32,h*.4);burst(w*.7,h*.38);if(!fireworksFrame)animateFireworks();},420);
-  setTimeout(()=>{burst(w*.5,h*.3);if(!fireworksFrame)animateFireworks();},850);
-}
-cutCakeBtn?.addEventListener('click',()=>{
-  const firstCut = !cakeScene.classList.contains('cut');
-  cakeScene.classList.add('cut');
-  cakeMessage.textContent='Yayyy! 🎂 Cake cut ho gaya, my wife! Patakhe bhi tumhare liye! 🎆 A wish, a kiss & unlimited pyaar! ❤️😘';
-  cutCakeBtn.textContent='🎂 Cake Cut Ho Gaya! ❤️';
-  // Fireworks launch automatically the moment the cake is cut.
-  if (firstCut) celebrate();
-});
-
-// Automatic fireworks: a welcome burst, then gentle celebratory bursts while the page is open.
-window.addEventListener('load',()=>{
-  setTimeout(()=>{ if(document.visibilityState==='visible') celebrate(); }, 1200);
-  setInterval(()=>{ if(document.visibilityState==='visible') celebrate(); }, 3000);
-});
-
-
-// Extra romantic surprises: gift welcome, typed love letter, and final message.
-document.addEventListener('DOMContentLoaded', () => {
-  const welcomeGift = document.getElementById('welcomeGift');
-  const openGiftBtn = document.getElementById('openGiftBtn');
-  if (welcomeGift && openGiftBtn) {
-    openGiftBtn.addEventListener('click', () => {
-      // Start the song on the visitor's tap (mobile browsers require a user gesture).
-      const music = document.getElementById('bgMusic');
-      if (music) { music.volume = 0.35; music.play().catch(() => {}); }
-      welcomeGift.classList.add('hidden');
-      // A little burst of hearts welcomes her into the birthday surprise.
-      for (let i = 0; i < 34; i++) {
-        const heart = document.createElement('span');
-        heart.className = 'opening-heart';
-        heart.textContent = ['❤️','💗','💖','💕','🫶🏻'][i % 5];
-        heart.style.setProperty('--x', (Math.random() * 94) + 'vw');
-        heart.style.setProperty('--size', (18 + Math.random() * 25) + 'px');
-        heart.style.animationDelay = (Math.random() * 0.7) + 's';
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 3800);
-      }
-    });
-  }
-
-  const letter = document.getElementById('typedLetter');
-  const letterSection = document.getElementById('loveLetterSection');
-  const letterText = 'Meri jaan, ❤️\\nTum meri zindagi ki sabse pyaari feeling ho. Tumhari smile mere din ko khoobsurat bana deti hai. Hamari first meeting meri favorite memories mein se ek hai, aur main chahta hoon ki hum aise hi saath haste, ladte, manate aur har pal ko special banate rahein. Main perfect nahi hoon, par tumhe pyaar karne aur tumhara saath dene ki koshish hamesha dil se karunga. Happy Birthday, my love. 🫶🏻💗';
-  if (letter && letterSection) {
-    let started = false;
-    const observer = new IntersectionObserver(entries => {
-      if (!entries.some(e => e.isIntersecting) || started) return;
-      started = true;
-      letterSection.classList.remove('hidden');
-      let i = 0;
-      // Slower typing so the reader can follow the love letter comfortably.
-      const timer = setInterval(() => {
-        letter.textContent = letterText.slice(0, ++i);
-        if (i >= letterText.length) clearInterval(timer);
-      }, 75);
-    }, {threshold: .15});
-    // Make section reachable by revealing it once the user reaches the end.
-    letterSection.classList.remove('hidden');
-    observer.observe(letterSection);
-  }
-
-  // Automatically launch the grand finale when the visitor reaches the last surprise section.
-  const finale = document.getElementById('grandFinaleOverlay');
-  const foreverSection = document.getElementById('foreverSection');
-  let finaleStarted = false;
-
-  function launchGrandFinale() {
-    if (finaleStarted) return;
-    finaleStarted = true;
-    if (finale) finale.classList.remove('hidden');
-    burstHearts();
-    if (typeof celebrate === 'function') celebrate();
-    for (let i = 0; i < 30; i++) {
-      const heart = document.createElement('span');
-      heart.className = 'finale-floating-heart';
-      heart.textContent = ['❤️','💗','💖','💕','🫶🏻'][i % 5];
-      heart.style.left = (Math.random() * 96) + 'vw';
-      heart.style.fontSize = (20 + Math.random() * 25) + 'px';
-      heart.style.setProperty('--duration', (4 + Math.random() * 3) + 's');
-      heart.style.animationDelay = (Math.random() * 1.8) + 's';
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 9000);
-    }
-  }
-
-  if (foreverSection && finale) {
-    const finaleObserver = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) {
-        finaleObserver.disconnect();
-        setTimeout(launchGrandFinale, 900);
-      }
-    }, { threshold: 0.35 });
-    finaleObserver.observe(foreverSection);
-  }
-
-  function burstHearts() {
-    for (let i = 0; i < 28; i++) {
-      const heart = document.createElement('span');
-      heart.textContent = ['💗','💖','💕','❤️'][i % 4];
-      heart.style.cssText = `position:fixed;z-index:9998;left:${Math.random()*100}vw;top:${55+Math.random()*35}vh;font-size:${18+Math.random()*22}px;pointer-events:none;transition:transform 1.8s ease,opacity 1.8s ease;`;
-      document.body.appendChild(heart);
-      requestAnimationFrame(() => { heart.style.transform = `translateY(-${100+Math.random()*250}px) rotate(${Math.random()*80-40}deg)`; heart.style.opacity = '0'; });
-      setTimeout(() => heart.remove(), 1900);
-    }
-  }
-});
-
-
-// Interactive romantic features: reasons, letters, quiz, scratch gift, promise and finale.
-document.addEventListener('DOMContentLoaded', () => {
-  const reasons = [
-    'Tumhari smile meri favourite hai. ❤️','Tumhare saath ordinary din bhi special lagta hai. 💗','Tum mujhe bina bole bhi samajh leti ho. 🫶🏻','Tumhari hasi mera mood theek kar deti hai. 😊','Tum meri favourite person ho. 👑','Tumhare saath future imagine karna beautiful lagta hai. ♾️','Tumhari chhoti-chhoti baatein yaad rehti hain. 🥹','Tum mere liye comfort ho. 🫂','Tumhare saath hasi-mazaak sabse best hai. 😂','Tum meri life mein pyaar laati ho. 🌷','Tumhari kindness mujhe inspire karti hai. 💞','Tumhare saath memories banana pasand hai. 📸','Tum meri best friend bhi ho. 💕','Tum mujhe better insaan banna yaad dilati ho. ✨','Tumhari presence se ghar jaisa feel hota hai. 🏡','Tumhara haath pakadna special lagta hai. 🤝','Tumhari khushi mere liye important hai. 💖','Tumhari aankhon mein apnapan dikhta hai. 🌙','Har din tumhe choose karunga. ❤️','Because you are simply YOU, meri jaan. 💗'
-  ];
-  let ri=0;
-  const reasonText=document.getElementById('reasonText'), reasonCount=document.getElementById('reasonCount');
-  document.getElementById('reasonBtn')?.addEventListener('click',()=>{ri=(ri+1)%reasons.length;if(reasonText)reasonText.textContent=reasons[ri];if(reasonCount)reasonCount.textContent=(ri+1)+' / '+reasons.length;});
-  const letters={sad:'Meri jaan, agar aaj dil udaas hai toh yaad rakhna: tum akeli nahi ho. Main tumhari baat sunne, tumhe hug dene aur tumhare saath rehne ke liye hoon. Ek deep breath lo. I love you. 🫂❤️',miss:'Mujhe bhi tumhari yaad aati hai, baby. Jab bhi miss karo, yaad rakhna hamara pyaar distance se chhota nahi hota. Sending you the biggest virtual hug. 💗🫶🏻',smile:'Ek chhoti si reminder: tum bahut special ho, tumhari smile beautiful hai, aur tum deserve karti ho duniya ki saari khushiyan. Ab ek cute si smile do, meri queen! 😊👑'};
-  document.querySelectorAll('[data-letter]').forEach(btn=>btn.addEventListener('click',()=>{const out=document.getElementById('openWhenText');if(out)out.textContent=letters[btn.dataset.letter]||'';}));
-  document.querySelectorAll('[data-correct]').forEach(btn=>btn.addEventListener('click',()=>{const out=document.getElementById('quizResult');if(out)out.textContent=btn.dataset.correct==='true'?'Correct! 👑❤️ Meri queen hi meri duniya hai! You win unlimited kisses and hugs. 😘🫂':'Hehe, wrong answer baby! 😂 Try again — hint: she is reading this website right now. 💗';}));
-  document.getElementById('scratchBtn')?.addEventListener('click',e=>{const b=e.currentTarget;b.classList.add('revealed');b.textContent='💖 SECRET GIFT UNLOCKED 💖';const out=document.getElementById('scratchMessage');if(out)out.textContent='Your gift is my promise: main tumhe pyaar, respect aur care dene ki koshish har din karta rahunga. Happy Birthday, My Queen! 👑❤️';});
-  document.getElementById('heartBtn')?.addEventListener('click',()=>{const out=document.getElementById('heartMessage');if(out)out.textContent='Dhadkan meri, naam tumhara. ❤️💓';for(let i=0;i<18;i++)makePetal('❤️');});
-  document.getElementById('promiseBtn')?.addEventListener('click',()=>{const out=document.getElementById('promiseMessage');if(out)out.textContent='Promise sealed with all my love. ♾️❤️ Hamesha ek team, ek saath.';for(let i=0;i<22;i++)makePetal('💗');});
-  document.getElementById('grandFinaleBtn')?.addEventListener('click',()=>{const out=document.getElementById('grandFinaleMessage');if(out)out.textContent='Make a wish, my queen! ✨ May your life be full of love, health, laughter and happiness. I love you forever. ❤️🎆';if(typeof celebrate==='function')celebrate();for(let i=0;i<40;i++)makePetal(['❤️','💖','✨','🌹'][i%4]);});
-  function makePetal(symbol){const el=document.createElement('span');el.className='petal';el.textContent=symbol;el.style.left=(Math.random()*100)+'vw';el.style.fontSize=(16+Math.random()*18)+'px';el.style.animationDuration=(4+Math.random()*4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),8500);}
-  // Gentle rose-petal shower after the main surprise has opened.
-  document.getElementById('openGiftBtn')?.addEventListener('click',()=>{for(let i=0;i<20;i++)setTimeout(()=>makePetal(['🌹','💗','🌸'][i%3]),i*90);});
-});
-
-
-// Extra 50 mini-surprises: each card reveals a personal message.
-document.addEventListener('DOMContentLoaded',()=>{
- const reveal=document.getElementById('bonusReveal');
- document.querySelectorAll('.mini-surprise').forEach(btn=>btn.addEventListener('click',()=>{
-   document.querySelectorAll('.mini-surprise.opened').forEach(x=>x.classList.remove('opened'));
-   btn.classList.add('opened');
-   if(reveal){reveal.textContent=btn.dataset.message||'You are loved, meri jaan. ❤️';reveal.classList.remove('pop');void reveal.offsetWidth;reveal.classList.add('pop');}
- }));
- document.getElementById('bonusHeartsBtn')?.addEventListener('click',()=>{for(let i=0;i<36;i++){setTimeout(()=>{const el=document.createElement('span');el.className='petal';el.textContent=['💖','❤️','💕','✨','🌹'][i%5];el.style.left=(Math.random()*100)+'vw';el.style.fontSize=(18+Math.random()*20)+'px';el.style.animationDuration=(4+Math.random()*3)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),8000);},i*55);}});
-});
-
-
-// Extra interactive romantic features
-let reasonIndex=0;
-const reasons=["Tumhari smile mere din ko roshan kar deti hai. ✨","Tum mujhe ghar jaisa sukoon deti ho. 🏡","Tumhari hasi meri favourite sound hai. 😊","Tum meri best friend bhi ho. 🫶","Tumhare saath simple moments bhi special lagte hain. 💗","Tum mujhe better insaan banne ki yaad dilati ho. 🌷","Tumhari kindness mujhe inspire karti hai. ❤️","Tumhare saath future imagine karna beautiful lagta hai. ♾️","Tum meri favourite notification ho. 📱💞","Har din tumhe choose karna meri favourite choice hai. 👑"];
-document.getElementById('queenEntryBtn')?.addEventListener('click',()=>{document.getElementById('queenEntry')?.classList.add('opened');for(let i=0;i<18;i++)setTimeout(()=>{if(typeof makePetal==='function')makePetal(['👑','💖','✨','🌹'][i%4]);},i*80);});
-document.querySelectorAll('[data-treasure]').forEach(b=>b.addEventListener('click',()=>{const o=document.getElementById('treasureResult');if(o)o.textContent=b.dataset.treasure==='right'?'Treasure unlocked! 💎 The real treasure is you, my queen. 👑❤️':'Not quite, baby 😄 Try the answer that makes my heart smile. 💗';}));
-document.getElementById('nextReasonBtn')?.addEventListener('click',()=>{reasonIndex=(reasonIndex+1)%100;const o=document.getElementById('reasonText');if(o)o.textContent='Reason '+(reasonIndex+1)+': '+reasons[reasonIndex%reasons.length];});
-document.querySelectorAll('[data-gift]').forEach(b=>b.addEventListener('click',()=>{const msgs={1:'Gift 1: One unlimited hug, whenever you need it. 🫂❤️',2:'Gift 2: One date night planned just for us. 🌹',3:'Gift 3: My promise to keep choosing you, every day. ♾️'};const o=document.getElementById('threeGiftMessage');if(o)o.textContent=msgs[b.dataset.gift];if(typeof celebrate==='function')celebrate();}));
-let mediaRecorder=null, voiceChunks=[];
-const recBtn=document.getElementById('recordWishBtn'), stopBtn=document.getElementById('stopWishBtn');
-recBtn?.addEventListener('click',async()=>{const status=document.getElementById('voiceStatus');if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){if(status)status.textContent='Voice recording is not supported in this browser. You can add a recorded audio file instead.';return;}try{const stream=await navigator.mediaDevices.getUserMedia({audio:true});voiceChunks=[];mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=e=>{if(e.data.size)voiceChunks.push(e.data)};mediaRecorder.onstop=()=>{const blob=new Blob(voiceChunks,{type:mediaRecorder.mimeType||'audio/webm'});const player=document.getElementById('voicePlayback');if(player){player.src=URL.createObjectURL(blob);player.hidden=false;}stream.getTracks().forEach(t=>t.stop());if(status)status.textContent='Your voice wish is ready to play on this page. ❤️';};mediaRecorder.start();recBtn.disabled=true;if(stopBtn)stopBtn.disabled=false;if(status)status.textContent='Recording… bolo, “Happy Birthday meri jaan!” 🎙️';}catch(e){if(status)status.textContent='Microphone permission nahi mili. Browser settings mein microphone allow karo.';}});
-stopBtn?.addEventListener('click',()=>{if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop();recBtn.disabled=false;stopBtn.disabled=true;});
-
-
-// WhatsApp message composer: opens a pre-filled chat; the visitor must tap Send in WhatsApp.
-(()=>{
-  const button=document.getElementById('sendWhatsAppMessage');
-  const field=document.getElementById('whatsappMessageText');
-  const status=document.getElementById('whatsappMessageStatus');
-  if(!button||!field)return;
-  button.addEventListener('click',()=>{
-    const message=field.value.trim();
-    if(!message){if(status)status.textContent='Pehle apna message likho na 💗';field.focus();return;}
-    const phone='919122950885';
-    const url='https://wa.me/'+phone+'?text='+encodeURIComponent(message);
-    if(status)status.textContent='WhatsApp khul raha hai… chat mein message ready milega. Wahan Send dabana mat bhoolna. 💚';
-    window.open(url,'_blank','noopener,noreferrer');
-  });
-})();
-
-// Auto-typing "Happy Birthday My Wife 😘" as soon as the page opens.
 (function(){
-  function run(){
-    const l1=document.getElementById('typeLine1'),l2=document.getElementById('typeLine2');
-    if(!l1||!l2)return;
-    const after=document.querySelector('#welcomeGift .after-type');
-    const cursor=document.querySelector('#welcomeGift .type-cursor');
-    const parts=[[l1,Array.from('Happy Birthday')],[l2,Array.from('My Wife 😘')]];
-    let p=0,i=0;
-    function step(){
-      if(p>=parts.length){
-        setTimeout(()=>{cursor&&cursor.classList.add('done');after&&after.classList.add('show');
-          for(let k=0;k<14;k++)setTimeout(()=>{const el=document.createElement('span');el.className='petal';el.textContent=['💗','🌸','✨'][k%3];el.style.left=(Math.random()*100)+'vw';el.style.fontSize=(16+Math.random()*18)+'px';el.style.animationDuration=(4+Math.random()*4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),8500);},k*100);
-        },500);return;
-      }
-      const [el,chars]=parts[p];
-      const ch=chars[i++];
-      if(/\p{Extended_Pictographic}/u.test(ch)){const e=document.createElement('span');e.className='emo';e.textContent=ch;el.appendChild(e);}
-      else el.appendChild(document.createTextNode(ch));
-      if(i>=chars.length){p++;i=0;setTimeout(step,450);}else setTimeout(step,130);
-    }
-    setTimeout(step,700);
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+"use strict";
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+
+/* ---------- background sparkles ---------- */
+const sp=$('#sparkles');
+for(let i=0;i<40;i++){const d=document.createElement('i');d.className='sparkle';
+  d.style.left=Math.random()*100+'%';d.style.top=Math.random()*100+'%';
+  d.style.setProperty('--d',(3+Math.random()*5)+'s');d.style.animationDelay=(Math.random()*5)+'s';sp.appendChild(d);}
+
+/* ---------- petals ---------- */
+function petals(n,set){set=set||['🌸','💗','🌹','✨','💖'];
+  for(let i=0;i<n;i++)setTimeout(()=>{const p=document.createElement('span');p.className='petal';
+    p.textContent=set[i%set.length];p.style.left=Math.random()*100+'vw';p.style.fontSize=(14+Math.random()*18)+'px';
+    p.style.animationDuration=(4+Math.random()*4)+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),9000);},i*70);}
+
+/* ---------- fireworks ---------- */
+const cv=$('#fx'),cx=cv.getContext('2d');let parts=[],raf=null;
+function size(){const r=Math.min(devicePixelRatio||1,2);cv.width=innerWidth*r;cv.height=innerHeight*r;cx.setTransform(r,0,0,r,0,0);}
+addEventListener('resize',size);size();
+function burst(x,y){const c=['#ff6b9a','#f7dfa8','#e9c27a','#ffc2d4','#ffffff','#ff9fbd'];
+  for(let i=0;i<80;i++){const a=Math.random()*6.283,s=1.2+Math.random()*4.8;
+    parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:60+Math.random()*30,m:90,r:1.2+Math.random()*2.4,c:c[i%c.length]});}
+  if(!raf)loop();}
+function loop(){cx.clearRect(0,0,innerWidth,innerHeight);parts=parts.filter(p=>p.l>0);
+  for(const p of parts){p.x+=p.vx;p.y+=p.vy;p.vx*=.982;p.vy=p.vy*.982+.04;p.l--;
+    cx.globalAlpha=Math.max(0,p.l/p.m);cx.fillStyle=p.c;cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill();}
+  cx.globalAlpha=1;raf=parts.length?requestAnimationFrame(loop):null;}
+function celebrate(){const w=innerWidth,h=innerHeight;
+  [[.25,.3,0],[.75,.28,250],[.5,.2,500],[.35,.42,800],[.68,.4,1050]].forEach(([a,b,t])=>setTimeout(()=>burst(w*a,h*b),t));}
+
+/* ---------- typing intro ---------- */
+function typeIntro(){const parts=[[$('#t1'),Array.from('Happy Birthday')],[$('#t2'),Array.from('My Wife 😘')]];let p=0,i=0;
+  (function step(){if(p>=parts.length){setTimeout(()=>{$('.caret').classList.add('done');$('.intro-after').classList.add('show');},400);return;}
+    const [el,ch]=parts[p];const c=ch[i++];
+    if(/\p{Extended_Pictographic}/u.test(c)){const e=document.createElement('span');e.className='emo';e.textContent=c;el.appendChild(e);}
+    else el.appendChild(document.createTextNode(c));
+    if(i>=ch.length){p++;i=0;setTimeout(step,420);}else setTimeout(step,110);})();}
+setTimeout(typeIntro,600);
+
+/* ---------- open gift ---------- */
+const music=$('#music'),mBtn=$('#musicBtn');
+$('#openBtn').addEventListener('click',()=>{
+  music.volume=.4;music.play().catch(()=>{});
+  $('#intro').classList.add('gone');document.body.classList.remove('locked');
+  mBtn.hidden=false;celebrate();petals(30);
+  setTimeout(()=>$$('.hero .reveal').forEach(e=>e.classList.add('in')),200);
+});
+mBtn.addEventListener('click',()=>{if(music.paused){music.play().catch(()=>{});mBtn.classList.remove('off');}else{music.pause();mBtn.classList.add('off');}});
+
+/* ---------- scroll reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.15});
+$$('.reveal').forEach(e=>{if(!e.closest('.hero'))io.observe(e);});
+
+/* ---------- countdown ---------- */
+function tick(){const now=new Date();let y=now.getFullYear();
+  const start=new Date(y,10,13),end=new Date(y,10,14);
+  if(now>=start&&now<end){$('#cdLabel').textContent='Aaj tumhara din hai! Happy Birthday, meri jaan 🎉';['d','h','m','s'].forEach(k=>$('#cd-'+k).textContent='🎂');return;}
+  let t=now<start?start:new Date(y+1,10,13);let r=Math.max(0,t-now);
+  const d=Math.floor(r/864e5);r%=864e5;const h=Math.floor(r/36e5);r%=36e5;const m=Math.floor(r/6e4);const s=Math.floor(r%6e4/1e3);
+  $('#cd-d').textContent=d;$('#cd-h').textContent=String(h).padStart(2,'0');$('#cd-m').textContent=String(m).padStart(2,'0');$('#cd-s').textContent=String(s).padStart(2,'0');}
+tick();setInterval(tick,1000);
+
+/* ---------- slider ---------- */
+const photos=[
+  ['first-meeting.jpg','Our first meeting, jis din meri favourite story shuru hui.'],
+  ['hands-together.jpg','Haath mein haath, aur dil mein bas tum.'],
+  ['memory-collage.jpg','Chhoti-chhoti yaadein, mere liye sabse keemti.'],
+  ['memory-frame.jpg','Har photo mein ek alag si yaad chhupi hai.'],
+  ['her-smile.jpg','Tumhari smile, meri favourite feeling.'],
+  ['hands-memory.jpg','Ye pal tumhare saath, meri poori duniya.']];
+const slides=$('#slides'),dots=$('#dots'),cap=$('#caption');let cur=0,timer;
+photos.forEach(([src,alt],i)=>{const im=new Image();im.src=src;im.alt=alt;if(i)im.loading='lazy';slides.appendChild(im);
+  const b=document.createElement('button');b.setAttribute('aria-label','Photo '+(i+1));b.onclick=()=>show(i,true);dots.appendChild(b);});
+function show(i,user){cur=(i+photos.length)%photos.length;
+  slides.querySelectorAll('img').forEach((im,k)=>im.classList.toggle('on',k===cur));
+  dots.querySelectorAll('button').forEach((b,k)=>b.classList.toggle('on',k===cur));
+  cap.style.opacity=0;setTimeout(()=>{cap.textContent=photos[cur][1];cap.style.opacity=1;},250);
+  if(user){clearInterval(timer);timer=setInterval(()=>show(cur+1),5000);}}
+$('#prev').onclick=()=>show(cur-1,true);$('#next').onclick=()=>show(cur+1,true);
+let sx=null;slides.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+slides.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)show(cur+(dx<0?1:-1),true);sx=null;});
+show(0);timer=setInterval(()=>show(cur+1),5000);
+
+/* ---------- typed letter ---------- */
+const letterTxt='Meri jaan,\nTum meri zindagi ki sabse pyaari feeling ho. Tumhari smile mera din khoobsurat bana deti hai, aur tumhare saath ordinary pal bhi special lagte hain.\nMain chahta hoon ki hum aise hi saath haste rahein, ladte rahein, manate rahein, aur har din ko yaadgaar banate rahein.\nMain perfect nahi hoon, par tumhe pyaar karne aur tumhara saath dene ki koshish hamesha dil se karunga.\nHappy Birthday, my love. 🫶';
+let typed=false;const lio=new IntersectionObserver(es=>{if(!es[0].isIntersecting||typed)return;typed=true;lio.disconnect();
+  const el=$('#letter'),ch=Array.from(letterTxt);let i=0;(function t(){el.textContent=ch.slice(0,++i).join('');if(i<ch.length)setTimeout(t,ch[i-1]==='\n'?400:38);})();},{threshold:.4});
+lio.observe($('#letterBox'));
+
+/* ---------- reasons ---------- */
+const reasons=['Tumhari smile meri favourite hai.','Tumhare saath ordinary din bhi special lagta hai.','Tum mujhe bina bole bhi samajh leti ho.','Tumhari hasi mera mood theek kar deti hai.','Tum meri favourite person ho.','Tumhare saath future imagine karna beautiful lagta hai.','Tumhari chhoti-chhoti baatein mujhe yaad rehti hain.','Tum mere liye sukoon ho.','Tumhare saath hasi-mazaak sabse best hai.','Tum meri life mein pyaar laati ho.','Tumhari kindness mujhe inspire karti hai.','Tumhare saath memories banana pasand hai.','Tum meri best friend bhi ho.','Tum mujhe better insaan banna yaad dilati ho.','Tumhare paas ghar jaisa feel hota hai.','Tumhara haath pakadna sabse special lagta hai.','Tumhari khushi mere liye sabse important hai.','Tumhari aankhon mein apnapan dikhta hai.','Har din tumhe hi choose karunga.','Because you are simply YOU, meri jaan. 💗'];
+let ri=0;const rc=$('#reasonCard');
+rc.addEventListener('click',()=>{rc.classList.add('spin');setTimeout(()=>{ri=(ri+1)%reasons.length;
+  $('#reasonText').textContent=reasons[ri];$('#reasonNum').textContent=String(ri+1).padStart(2,'0')+' / '+reasons.length;rc.classList.remove('spin');
+  if(ri===reasons.length-1)petals(16,['💗','❤️']);},250);});
+
+/* ---------- helpers ---------- */
+function say(id,txt){const o=$(id);o.textContent=txt;o.classList.remove('pop');void o.offsetWidth;o.classList.add('pop');}
+
+/* ---------- open when ---------- */
+const letters={sad:'Meri jaan, agar aaj dil udaas hai toh yaad rakhna, tum akeli nahi ho. Main hamesha tumhari baat sunne aur tumhe gale lagane ke liye hoon. 🫂',
+  miss:'Mujhe bhi tumhari bahut yaad aati hai. Jab bhi miss karo, yaad rakhna hamara pyaar kisi distance se chhota nahi. Sending the biggest hug. 💗',
+  smile:'Reminder: tum bahut special ho, tumhari smile beautiful hai, aur tum duniya ki saari khushiyan deserve karti ho. Ab ek pyaari si smile do! 😊'};
+$$('.env').forEach(b=>b.addEventListener('click',()=>{$$('.env').forEach(x=>x.classList.remove('on'));b.classList.add('on');say('#envOut',letters[b.dataset.letter]);}));
+
+/* ---------- cake ---------- */
+$('#cakeBtn').addEventListener('click',e=>{const c=$('#cake');if(c.classList.contains('cut'))return;
+  c.classList.add('cut');e.currentTarget.textContent='Cake Cut Ho Gaya! 🎉';celebrate();petals(30,['🎉','🎂','💖','✨']);
+  say('#cakeOut','Yayyy! Happy Birthday meri jaan! 🎂 Tumhari har wish poori ho, aur pehla piece sirf tumhara. 😘');});
+
+/* ---------- gifts ---------- */
+$$('.gift').forEach(g=>g.addEventListener('click',()=>{if(g.classList.contains('open'))return;g.classList.add('open');
+  const r=g.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2);}));
+
+/* ---------- quiz ---------- */
+$$('.quiz button').forEach(b=>b.addEventListener('click',()=>{
+  if(b.dataset.ok==='1'){b.classList.add('right');say('#quizOut','Bilkul sahi! 👑 Meri queen hi meri duniya hai. Inaam: unlimited hugs aur kisses. 😘');petals(20,['👑','💖','✨']);}
+  else{b.classList.remove('wrong');void b.offsetWidth;b.classList.add('wrong');say('#quizOut','Hehe, galat jawab! 😂 Hint: woh abhi ye page padh rahi hai. 💗');}}));
+
+/* ---------- promise ---------- */
+$('#promiseBtn').addEventListener('click',()=>{say('#promiseOut','Promise sealed, hamesha ke liye. ♾️❤️');petals(24,['💗','❤️','🤍']);});
+
+/* ---------- whatsapp ---------- */
+$('#sendMsg').addEventListener('click',()=>{const f=$('#msg'),t=f.value.trim(),s=$('#msgStatus');
+  if(!t){s.textContent='Pehle kuch likho na 💗';f.focus();return;}
+  s.textContent='WhatsApp khul raha hai… wahan Send dabana mat bhoolna 💚';
+  window.open('https://wa.me/919122950885?text='+encodeURIComponent(t),'_blank','noopener');});
+
+/* ---------- finale ---------- */
+let fin=false;const fio=new IntersectionObserver(es=>{if(!es[0].isIntersecting||fin)return;fin=true;fio.disconnect();
+  setTimeout(()=>{$('#finale').classList.add('show');celebrate();petals(40);},1200);},{threshold:.6});
+fio.observe($('#finaleSec'));
+$('#closeFinale').addEventListener('click',()=>{$('#finale').classList.remove('show');scrollTo({top:0,behavior:'smooth'});setTimeout(()=>{fin=false;fio.observe($('#finaleSec'));},2000);});
 })();
