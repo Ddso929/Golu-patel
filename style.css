@@ -183,3 +183,16 @@ footer{text-align:center;opacity:.55;font-size:12px;padding:10px 0 24px}
 .opening-birthday-title{font-size:clamp(2.4rem,9vw,4.4rem);line-height:1.08;letter-spacing:-.035em;text-transform:none;text-shadow:0 0 18px rgba(255,95,165,.65),0 5px 24px rgba(0,0,0,.35);margin:18px 0 20px;animation:birthdayGlow 2.2s ease-in-out infinite alternate}
 #nextBtn{display:none!important}
 @keyframes birthdayGlow{from{transform:scale(1);text-shadow:0 0 12px rgba(255,95,165,.45),0 5px 24px rgba(0,0,0,.35)}to{transform:scale(1.035);text-shadow:0 0 28px rgba(255,120,185,.9),0 5px 24px rgba(0,0,0,.35)}}
+
+/* Auto-typing opening title */
+.opening-birthday-title{min-height:2.6em;background:linear-gradient(90deg,#ff4f9a,#ffd166,#ff4f9a);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:titleShine 3s linear infinite;text-shadow:none;filter:drop-shadow(0 0 12px rgba(255,79,154,.55))}
+.opening-birthday-title #typeLine2{display:inline-block}
+.type-cursor{color:#ff8fc0;-webkit-text-fill-color:#ff8fc0;animation:cursorBlink .8s step-end infinite;margin-left:2px;font-weight:300}
+.type-cursor.done{display:none}
+.after-type{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s ease;pointer-events:none}
+.after-type.show{opacity:1;transform:none;pointer-events:auto}
+.welcome-gift .gift-emoji{animation:giftPop 1s ease both}
+@keyframes cursorBlink{50%{opacity:0}}
+@keyframes titleShine{to{background-position:200% center}}
+@keyframes giftPop{0%{transform:scale(0) rotate(-20deg)}70%{transform:scale(1.2) rotate(8deg)}100%{transform:scale(1)}}
+.opening-birthday-title .emo{-webkit-text-fill-color:initial;color:initial;background:none}

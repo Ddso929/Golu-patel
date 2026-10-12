@@ -303,3 +303,29 @@ stopBtn?.addEventListener('click',()=>{if(mediaRecorder&&mediaRecorder.state!=='
     window.open(url,'_blank','noopener,noreferrer');
   });
 })();
+
+// Auto-typing "Happy Birthday My Wife 😘" as soon as the page opens.
+(function(){
+  function run(){
+    const l1=document.getElementById('typeLine1'),l2=document.getElementById('typeLine2');
+    if(!l1||!l2)return;
+    const after=document.querySelector('#welcomeGift .after-type');
+    const cursor=document.querySelector('#welcomeGift .type-cursor');
+    const parts=[[l1,Array.from('Happy Birthday')],[l2,Array.from('My Wife 😘')]];
+    let p=0,i=0;
+    function step(){
+      if(p>=parts.length){
+        setTimeout(()=>{cursor&&cursor.classList.add('done');after&&after.classList.add('show');
+          for(let k=0;k<14;k++)setTimeout(()=>{const el=document.createElement('span');el.className='petal';el.textContent=['💗','🌸','✨'][k%3];el.style.left=(Math.random()*100)+'vw';el.style.fontSize=(16+Math.random()*18)+'px';el.style.animationDuration=(4+Math.random()*4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),8500);},k*100);
+        },500);return;
+      }
+      const [el,chars]=parts[p];
+      const ch=chars[i++];
+      if(/\p{Extended_Pictographic}/u.test(ch)){const e=document.createElement('span');e.className='emo';e.textContent=ch;el.appendChild(e);}
+      else el.appendChild(document.createTextNode(ch));
+      if(i>=chars.length){p++;i=0;setTimeout(step,450);}else setTimeout(step,130);
+    }
+    setTimeout(step,700);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
+})();
